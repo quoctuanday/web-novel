@@ -1,20 +1,21 @@
 'use client';
 import React, { useRef, useState } from 'react';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { storage } from '../../../../firebase/config';
+import { storage } from '../../../firebase/config';
 import Image from 'next/image';
 import { CiCirclePlus } from 'react-icons/ci';
 import { useUser } from '@/store/userLogin';
 import axios from 'axios';
 import { PORT } from '@/api/port';
 import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 function PostStoryPage() {
-    const { userLoginData, setUserLoginData } = useUser();
+    const router = useRouter();
+    const { userLoginData } = useUser();
     const [imageChange, setImageChange] = useState<string | null>(null);
     const [inputList, setInputList] = useState(['']);
     const [file, setFile] = useState<File | null>(null);
-    const [uploadedUrl, setUploadedUrl] = useState<String | null>(null);
     const [formData, setFormData] = useState({
         title: '',
         author: '',
@@ -25,7 +26,6 @@ function PostStoryPage() {
     });
 
     const imageUpload = useRef<HTMLInputElement>(null);
-    const checkedMedssage = useRef<HTMLInputElement>(null);
 
     const addInput = () => {
         setInputList([...inputList, '']);
@@ -41,7 +41,11 @@ function PostStoryPage() {
         console.log(formData);
     };
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (
+        e:
+            | React.ChangeEvent<HTMLInputElement>
+            | React.ChangeEvent<HTMLTextAreaElement>
+    ) => {
         const { name, value } = e.target;
         setFormData((prevFormData) => ({
             ...prevFormData,
@@ -81,6 +85,9 @@ function PostStoryPage() {
             });
             if (response.status === 200) {
                 toast.success('Đăng truyện thành công!');
+                setTimeout(() => {
+                    router.push('/story');
+                }, 2000);
             }
         } catch (error) {
             console.log('post book error:', error);
@@ -93,7 +100,7 @@ function PostStoryPage() {
     };
 
     return (
-        <div className="grid grid-cols-2 gap-4 w-full mt-8 ">
+        <div className="grid grid-cols-2 gap-4 w-full  ">
             <div className="col-span-1 rounded-[15px] box_shadow px-4  ">
                 <h1 className="mt-4  roboto-bold text-[20px]">Đăng truyện</h1>
                 <form className="mt-2" onSubmit={handleUploadInfo}>
@@ -110,8 +117,7 @@ function PostStoryPage() {
 
                     <div className="roboto-regular text-[16px] mt-2">
                         <div>Giới thiệu</div>
-                        <input
-                            type="text"
+                        <textarea
                             name="description"
                             value={formData.description}
                             onChange={handleInputChange}
@@ -165,12 +171,7 @@ function PostStoryPage() {
                     </div>
 
                     <div className="roboto-regular text-[16px] mt-2">
-                        <input
-                            ref={checkedMedssage}
-                            type="checkbox"
-                            className="mr-2"
-                            required
-                        />
+                        <input type="checkbox" className="mr-2" required />
                         <label>
                             Tôi đồng ý với các điều khoản dịch vụ khi đăng
                             truyện.{' '}

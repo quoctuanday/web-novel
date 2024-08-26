@@ -61,9 +61,9 @@ function Header() {
                 className="h-[100%] z-20 fixed top-0 right-0 w-[340px] bg-[#272729] duration-200 ease-in-out p-6 text-white text-base roboto-bold"
                 ref={closeSidebar}
             >
-                <div className=" flex justify-end ">
+                <div className=" flex justify-end  ">
                     <CgClose
-                        className="text-white text-2xl "
+                        className="text-white text-2xl hover:bg-red-500 p-1 rounded "
                         onClick={handleCloseSidebar}
                     />
                 </div>
@@ -87,7 +87,7 @@ function Header() {
                                 </div>
                             </div>
                             <div className="mt-6 ml-3">
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <Link
                                         href={'/home'}
                                         className="flex items-center"
@@ -101,7 +101,7 @@ function Header() {
                                     </Link>
                                 </div>
 
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <Link
                                         href={'#'}
                                         className="flex items-center"
@@ -114,7 +114,7 @@ function Header() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <Link
                                         href={'#'}
                                         className="flex items-center"
@@ -127,7 +127,7 @@ function Header() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <Link
                                         href={'#'}
                                         className="flex items-center"
@@ -140,20 +140,17 @@ function Header() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className="mb-3">
-                                    <Link
-                                        href="/postStory"
-                                        className="flex items-center"
-                                    >
-                                        <div className="">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
+                                    <Link href="/story">
+                                        <div className="flex items-center">
                                             <LuPencilLine />
-                                        </div>
-                                        <div className="roboto-bold ml-4">
-                                            Đăng truyện
+                                            <div className="roboto-bold ml-4">
+                                                Truyện của tôi
+                                            </div>
                                         </div>
                                     </Link>
                                 </div>
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <Link
                                         href="/profile"
                                         className="flex items-center"
@@ -166,7 +163,7 @@ function Header() {
                                         </div>
                                     </Link>
                                 </div>
-                                <div className="mb-3">
+                                <div className="p-2 rounded-[10px] hover:bg-red-500">
                                     <div
                                         className="flex items-center"
                                         onClick={handleLogOut}

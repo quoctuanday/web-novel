@@ -40,7 +40,7 @@ export default function ProfileLayout({
         setUploading(true);
         const storageRef = ref(
             storage,
-            `images/${userLoginData?.userName}/avt/${file.name}`
+            `images/${userLoginData?.userName}/avatar`
         );
         console.log('Uploaded image successfully');
         try {

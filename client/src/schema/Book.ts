@@ -6,6 +6,7 @@ export type Book = {
     image: string;
     numberOfChapter: number;
     type: string[];
+    status: String;
     createdAt?: Date;
     updatedAt?: Date;
 };

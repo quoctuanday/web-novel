@@ -16,6 +16,18 @@ class NovelController {
                 next(error);
             });
     }
+    showStory(req, res, next) {
+        const author = req.params.userName;
+        Book.find({ author: author })
+            .then((book) => {
+                if (!book) return res.json('book not found');
+                res.status(200).json({ book: multipleMongooseToObject(book) });
+            })
+            .catch((error) => {
+                console.error('Book show error:', error);
+                next(error);
+            });
+    }
 }
 
 module.exports = new NovelController();

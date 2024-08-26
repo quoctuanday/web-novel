@@ -11,6 +11,7 @@ const Book = new Schema(
         image: { type: String, maxLength: 255 },
         numberOfChapter: { type: Number, default: 0 },
         type: { type: [String], required: true },
+        status: { type: String, default: 'Chờ duyệt' },
     },
     { timestamps: true }
 );
