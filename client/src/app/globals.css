@@ -38,6 +38,19 @@
 }
 
 @layer components {
+    .hover-container {
+        position: relative;
+    }
+
+    .hover-container:hover > .hover-content {
+        display: block;
+    }
+
+    .hover-content {
+        display: none;
+        position: absolute;
+    }
+
     .login-header::before {
         content: '';
         position: absolute;

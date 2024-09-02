@@ -21,7 +21,10 @@ export default function StoryLayout({
                     </Link>
                     <Link href="/profile">
                         <Image
-                            src={(userLoginData && userLoginData.image) || ''}
+                            src={
+                                (userLoginData && userLoginData.image) ||
+                                '/images/avatar-trang.jpg'
+                            }
                             alt=""
                             width={100}
                             height={100}

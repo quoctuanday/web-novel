@@ -112,6 +112,7 @@ function PostStoryPage() {
                             value={formData.title}
                             className="border-2 rounded-[10px] py-1 px-4 w-full"
                             onChange={handleInputChange}
+                            required
                         />
                     </div>
 
@@ -122,6 +123,7 @@ function PostStoryPage() {
                             value={formData.description}
                             onChange={handleInputChange}
                             className="border-2 rounded-[10px] py-1 px-4 w-full"
+                            required
                         />
                     </div>
 
@@ -165,6 +167,7 @@ function PostStoryPage() {
                             name="image"
                             className=""
                             onChange={handleFileChange}
+                            required
                         />
 
                         <button></button>

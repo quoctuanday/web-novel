@@ -5,8 +5,15 @@ import { useUser } from '@/store/userLogin';
 import axios from 'axios';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { CiSearch } from 'react-icons/ci';
+import {
+    CiAlignBottom,
+    CiEdit,
+    CiSearch,
+    CiSquarePlus,
+    CiViewList,
+} from 'react-icons/ci';
 
 function StoryPage() {
     const { userLoginData } = useUser();
@@ -50,7 +57,8 @@ function StoryPage() {
                     <div className="col-span-3  pl-4"> Truyện</div>
                     <div className="col-span-2"> Thời gian</div>
                     <div className="col-span-2"> Trạng thái</div>
-                    <div className="col-span-3"></div>
+                    <div className="col-span-1 text-center"> Số chương</div>
+                    <div className="col-span-2"></div>
                 </div>
                 <div className="pb-6">
                     {books.map((book) => (
@@ -79,7 +87,48 @@ function StoryPage() {
                             <div className="flex items-center col-span-2">
                                 {book.status}
                             </div>
-                            <div className="flex items-center col-span-3"></div>
+                            <div className="flex items-center justify-center col-span-1">
+                                {book.numberOfChapter}
+                            </div>
+                            <div className="flex items-center justify-end col-span-2 ">
+                                <Link
+                                    href={`postChapter/${book._id}`}
+                                    className="hover-container"
+                                >
+                                    <div className="hover-content top-[-110%] left-1/2 transform -translate-x-1/2 transition-width ease-linear duration-400 w-max bg-[#4c7766] text-[#ebe6e0] rounded p-1">
+                                        Thêm chương
+                                    </div>
+                                    <CiSquarePlus className="hover:bg-[#4c7766] mx-1 hover:text-[#ebe6e0] p-1 rounded text-[30px]" />
+                                </Link>
+                                <Link
+                                    href={`listChapter/${book._id}`}
+                                    className="hover-container"
+                                >
+                                    <div className="hover-content top-[-110%] left-1/2 transform -translate-x-1/2 transition-width ease-linear duration-400 w-max bg-[#4c7766] text-[#ebe6e0] rounded p-1 ">
+                                        Danh sách chương
+                                    </div>
+
+                                    <CiViewList className="hover:bg-[#4c7766] mx-1 hover:text-[#ebe6e0] p-1 rounded text-[30px]" />
+                                </Link>
+                                <Link
+                                    href={`editStory/${book._id}`}
+                                    className="hover-container"
+                                >
+                                    <div className="hover-content top-[-110%] left-1/2 transform -translate-x-1/2 transition-width ease-linear duration-400 w-max bg-[#4c7766] text-[#ebe6e0] rounded p-1">
+                                        Chỉnh sửa
+                                    </div>
+                                    <CiEdit className="hover:bg-[#4c7766] mx-1 hover:text-[#ebe6e0] p-1 rounded text-[30px]" />
+                                </Link>
+                                <Link
+                                    href={`storyStatistics/${book._id}`}
+                                    className="hover-container"
+                                >
+                                    <div className="hover-content top-[-110%] left-1/2 transform -translate-x-1/2 transition-width ease-linear duration-400 w-max bg-[#4c7766] text-[#ebe6e0] rounded p-1">
+                                        Thống kê
+                                    </div>
+                                    <CiAlignBottom className="hover:bg-[#4c7766] hover:text-[#ebe6e0] p-1 rounded text-[30px]" />
+                                </Link>
+                            </div>
                         </div>
                     ))}
                 </div>
